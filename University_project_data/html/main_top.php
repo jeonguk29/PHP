@@ -16,19 +16,217 @@
 <title>인덕닷컴 쇼핑몰</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="include/font.css" rel="stylesheet" type="text/css">
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Alternate Column Scroll | Codrops</title>
+		<meta name="description" content="A layout with an alternate scroll on image columns and a content preview." />
+		<meta name="keywords" content="layout, scroll, locomotive scroll, column, javascript, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://use.typekit.net/njz5ajv.css">
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+
 <script language="Javascript" src="include/common.js"></script>
+
+</head>
+
+
 
 <style>
 
 body {
-    background-image: url(images/back2.jpg);
+
     background-repeat: no-repeat;
+	
+
 }
+
+.slider{
+    width: 959px;
+    height: 235px;
+    position: relative;
+    margin: 0 auto;
+}
+.slider input[type=radio]{
+    display: none;
+}
+
+ul.imgs{
+    padding: 0;
+    margin: 0;
+}
+ul.imgs li{
+    position: absolute;
+    left: 640px;
+    transition-delay: 1s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 30px;
+}
+ul.imgs li img{
+    border-radius: 30px;
+    border: 5px solid rgba(0,0,0,0.3);
+}
+
+.bullets{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+.bullets label{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.55);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+    background-color: #fff;
+}
+
+/* 1 */
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    left: 0;
+    transition: 0.75s;
+    z-index:1;
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(2){
+    left: 90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(3){
+    left: 170px;
+    transition: 0.75s;
+    z-index:-1;
+    transform: scale(0.8);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(4){
+    left: 230px;
+    transition: 0.75s;
+    z-index:-2;
+    transform: scale(0.7);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+
+/* 2 */
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(1){
+    left: -90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    left: 0;
+    transition: 0.75s;
+    z-index:1;
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(3){
+    left: 90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(4){
+    left: 170px;
+    transition: 0.75s;
+    z-index:-1;
+    transform: scale(0.8);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+
+/* 3 */
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(1){
+    left: -170px;
+    transition: 0.75s;
+    z-index:-1;
+    transform: scale(0.8);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(2){
+    left: -90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+    left: 0;
+    transition: 0.75s;
+    z-index:1;
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(4){
+    left: 90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+
+
+/* 4 */
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(1){
+    left: -230px;
+    transition: 0.75s;
+    z-index:-2;
+    transform: scale(0.7);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(2){
+    left: -170px;
+    transition: 0.75s;
+    z-index:-1;
+    transform: scale(0.8);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(3){
+    left: -90px;
+    transition: 0.75s;
+    z-index:0;
+    transform: scale(0.9);
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+    left: 0;
+    transition: 0.75s;
+    z-index:1;
+    box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
+}
+
 </style>
 
-</head>
+<script>
 
-<body style="margin:0" >
+
+</script>
+
+<body style="background-color:#b7b19f">
+<!-- background-color:#b7b19f" -->
 <center>
 
 <table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -37,7 +235,7 @@ body {
 			<!--  상단 왼쪽 로고  -------------------------------------------->
 			<table border="0" cellspacing="0" cellpadding="0" width="182">
 				<tr>
-					<td><a href="index.html"><img src="images/top_logo.gif" width="182" height="30" border="0"></a></td>
+					<td><a href="index.html"><img src="images/footer_logo2.gif" width="182" height="30" border="0"></a></td>
 				</tr>
 			</table>
 		</td>
@@ -85,11 +283,32 @@ body {
 </table>
 
 <!--  메인 이미지 --------------------------------------------------->
+
+<div class="slider">
+    <input type="radio" name="slide" id="slide1" checked>
+    <input type="radio" name="slide" id="slide2">
+    <input type="radio" name="slide" id="slide3">
+    <input type="radio" name="slide" id="slide4">
+    <ul id="imgholder" class="imgs">
+        <li><a href="index.html"><img src="images/main.jpg" width="959" height="175" border="0"></a></li>
+		 <li><a href="index.html"><iframe width="959" height="175" src="https://www.youtube.com/embed/qu3fySrXLpY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a></li>
+		  <li><a href="index.html"><iframe width="959" height="175" src="https://www.youtube.com/embed/DuSBXKMBW7c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a></li>
+		   <li><a href="index.html"><img src="images/main_image3.jpg" width="959" height="175" border="0"></a></li>
+    </ul>
+    <div class="bullets">
+        <label for="slide1">&nbsp;</label>
+        <label for="slide2">&nbsp;</label>
+        <label for="slide3">&nbsp;</label>
+        <label for="slide4">&nbsp;</label>
+    </div>
+</div>
+<!-- 기본 메인 이미지
 <table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
 	<tr>
 		<td><a href="index.html"><img src="images/main.jpg" width="959" height="175" border="0"></a></td>
 	</tr>
 </table>
+-->
 
 <!--  Category 메뉴 : 가로형인 경우  --------------------------------------
 <table width="959" height="25" border="0" cellspacing="0" cellpadding="0" align="center">

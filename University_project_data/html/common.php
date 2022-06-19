@@ -17,7 +17,7 @@
 	$a_idname=array("전체","이름","ID");     //  2줄은 common.php에 작성.
 	$n_idname=count($a_idname);    
 	
-	$a_menu=array("남성가방","남성슈즈","여성가방","여성슈즈","지갑","시계","실버 주얼리","선글라스","벨트");
+	$a_menu=array("분류선택","남성가방","남성슈즈","여성가방","여성슈즈","지갑","시계","실버 주얼리","선글라스","벨트", "기타상품");
 	$n_menu=count($a_menu);              
 	
 	
@@ -29,5 +29,11 @@
 
 	$a_text1=array("", "제품이름","제품번호");   // for문의 $i는 1부터 시작
 	$n_text1=count($a_text1);
+	
+	$baesongbi = 2500;
+    $max_baesongbi = 100000;
+                  
+	$a_state=array("전체","주문신청","주문확인","입금확인", "배송중", "주문완료", "주문취소");
+	$n_state=count($a_state);
 
 ?>

@@ -13,7 +13,7 @@ function menu()
 + "                      <tr> " + "\n"
 + "                        <td width='100'><font color='#0457A2'>▶ <a href='member.php'>회원관리</font></a></td>" + "\n"
 + "                        <td width='100'><font color='#0457A2'>▶ <a href='product.php'>상품관리</font></a></td>" + "\n"
-+ "                        <td width='100'><font color='#0457A2'>▶ <a href='jumun.html'>주문관리</font></a></td>" + "\n"
++ "                        <td width='100'><font color='#0457A2'>▶ <a href='jumun.php'>주문관리</font></a></td>" + "\n"
 + "                        <td width='100'><font color='#0457A2'>▶ <a href='opt.php'>옵션관리</font></a></td>" + "\n"
 + "                        <td width='100'><font color='#0457A2'>▶ <a href='faq.html'>FAQ관리</font></a></td>" + "\n"
 + "                      </tr>" + "\n"

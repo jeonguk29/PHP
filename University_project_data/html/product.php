@@ -1,260 +1,178 @@
-<!-------------------------------------------------------------------------------------------->	
+<!-------------------------------------------------------------------------------------------->   
 <!-- 프로그램 : 쇼핑몰 따라하기 실습지시서 (실습용 HTML)                                    -->
 <!--                                                                                        -->
 <!-- 만 든 이 : 윤형태 (2008.2 - 2017.12)                                                    -->
-<!-------------------------------------------------------------------------------------------->	
+<!-------------------------------------------------------------------------------------------->   
 <?
 include "common.php";
 include "main_top.php";
-	$menu=$_REQUEST[menu];
-	$query="select * from product where menu47=$menu order by no47 desc";
+   $menu=$_REQUEST["menu"];
+   $sort=$_REQUEST["sort"];
 
-	$result=mysqli_query($db,$query); 
-	if (!$result) exit("에러:$query");
+   if ($sort=="up")            // 고가격순
+   $query="select * from product where menu47=$menu order by price47 desc";
 
-	$count=mysqli_num_rows($result);
-?>		<!--  현재 페이지 자바스크립  -------------------------------------------->
-			<script language = "javascript">
+   else if ($sort=="down")  // 저가격순
+   $query="select * from product where menu47=$menu order by price47";
 
-			function Zoomimage(no) 
-			{
-				window.open("zoomimage.php?no="+no, "", "menubar=no, scrollbars=yes, width=560, height=640, top=30, left=50");
-			}
+   else if ($sort=="name")  // 이름순
+   $query="select * from product where menu47=$menu order by name47";
+   else                              // 신상품순
+   $query="select * from product where menu47=$menu order by no47 desc";
 
-			function check_form2(str) 
-			{
-				if (!form2.opts1.value) {
-						alert("옵션1을 선택하십시요.");
-						form2.opts1.focus();
-						return;
-				}
-				if (!form2.opts2.value) {
-						alert("옵션2를 선택하십시요.");
-						form2.opts2.focus();
-						return;
-				}
-				if (!form2.num.value) {
-						alert("수량을 입력하십시요.");
-						form2.num.focus();
-						return;
-				}
-				if (str == "D") {
-					form2.action = "cart_edit.php";
-					form2.kind .value = "order";
-					form2.submit();
-				}
-				else {
-					form2.action = "cart_edit.php";
-					form2.submit();
-				}
-			}
+   $result=mysqli_query($db,$query); 
+   if (!$result) exit("에러:$query");
 
-			</script>
+   $count=mysqli_num_rows($result);
+?>   <!--  현재 페이지 자바스크립  -------------------------------------------->
+<!-------------------------------------------------------------------------------------------->   
+<!-- 시작 : 다른 웹페이지 삽입할 부분                                                       -->
+<!-------------------------------------------------------------------------------------------->   
 
-			<table border="0" cellpadding="0" cellspacing="0" width="747">
-				<tr><td height="13"></td></tr>
-				<tr>
-					<td height="30"><img src="images/product_title3.gif" width="746" height="30" border="0"></td>
-				</tr>
-				<tr><td height="10"></td></tr>
-			</table>
+      <!-- 하위 상품목록 -->
 
-			<!-- form2 시작  -->
-			<form name="form2" method="post" action="">
-			<input type="hidden" name="no" value="<?=$row[no47]?>">
-			<input type="hidden" name="kind" value="insert">
-
-			<table border="0" cellpadding="0" cellspacing="0" width="745">
-				<tr>
-					<td width="335" align="center" valign="top">
-						<!-- 상품이미지 -->
-						<table border="0" cellpadding="0" cellspacing="1" width="315" height="315" bgcolor="D4D0C8">
-							<tr>
-								<td bgcolor="white" align="center">
-									<img src="product/<?=$row[image2];?>" height="315" border="0" align="absmiddle" ONCLICK="Zoomimage('<?=$row[no47]?>')" STYLE="cursor:hand">
-
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td width="410 " align="center" valign="top">
-						<!-- 상품명 -->
-						<table border="0" cellpadding="0" cellspacing="0" width="370" class="cmfont">
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-							<tr>
-								<td width="80" height="45" style="padding-left:10px">
-									<img src="images/i_dot1.gif" width="3" height="3" border="0" align="absmiddle">
-									<font color="666666"><b>제품명</b></font>
-								</td>
-								<td width="1" bgcolor="E8E7EA"></td>
-								<td style="padding-left:10px">
-									<font color="282828"><?=$row[name47];?></font><br>
-										<?
-									if($row[icon_hit47]==1)
-										echo("<img src='images/i_hit.gif' align='absmiddle' vspace='1'>");
-									if($row[icon_new47]==1)
-										echo("<img src='images/i_new.gif' align='absmiddle' vspace='1'>");
-									if($row[icon_sale47]==1)
-										echo("<img src='images/i_sale.gif' align='absmiddle' vspace='1'>");
-										?>
-									 
-								</td>
-							</tr>
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-							<!-- 시중가 -->
-							<tr>
-								<td width="80" height="35" style="padding-left:10px">
-									<img src="images/i_dot1.gif" width="3" height="3" border="0" align="absmiddle">
-									<font color="666666"><b>소비자가</b></font>
-								</td>
-								<td width="1" bgcolor="E8E7EA"></td>
-						
-								<?
-								if($row[icon_sale47]==1)
-									echo("<td width='289' style='padding-left:10px'><font color='666666'><s>$price</s></font></td>");
-								else
-									echo("<td width='289' style='padding-left:10px'><font color='666666'><b>$price 원</b></font></td>");
-								?>
-							</font></td>
-							</tr>
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-							<!-- 판매가 -->
-							<tr>
-								<td width="80" height="35" style="padding-left:10px">
-									<img src="images/i_dot1.gif" width="3" height="3" border="0" align="absmiddle">
-									<font color="666666"><b>판매가</b></font>
-								</td>
-								<td width="1" bgcolor="E8E7EA"></td>
-								<td style="padding-left:10px"><font color="0288DD"><b><?=$saleprice?>원</b></font></td>
-							</tr>
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-							<!-- 옵션 -->
-							<tr>
-								<td width="80" height="35" style="padding-left:10px">
-									<img src="images/i_dot1.gif" width="3" height="3" border="0" align="absmiddle">
-									<font color="666666"><b>옵션선택</b></font>
-								</td>
-								<td width="1" bgcolor="E8E7EA"></td>
-								<td style="padding-left:10px">
-									<select name="opts1" class="cmfont1">
-										<option value="">선택하세요</option>
-									<?
-										$query = "select * from opts where opt_no47=$row[opt1]";
-										$result=mysqli_query($db,$query); 
-										if (!$result) exit("에러:$query");
-
-										$count=mysqli_num_rows($result);
-
-										for($i=0; $i<$count; $i++)
-										{
-											$row1=mysqli_fetch_array($result);
-											echo("<option value='$row1[no47]'>$row1[name47]</option>");
-										}				
-										?>
-									</select> &nbsp;
-									<select name="opts2" class="cmfont1">
-										<option value="">선택하세요</option>
-										<?
-										$query = "select * from opts where opt_no47=$row[opt2]";
-										$result=mysqli_query($db,$query); 
-										if (!$result) exit("에러:$query");
-
-										$count=mysqli_num_rows($result);
-
-										for($i=0; $i<$count; $i++)
-										{
-											$row2=mysqli_fetch_array($result);
-											echo("<option value='$row2[no47]'>$row2[name47]</option>");
-										}				
-											?>
-									</select>
-								</td>
-							</tr>
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-							<!-- 수량 -->
-							<tr>
-								<td width="80" height="35" style="padding-left:10px">
-									<img src="images/i_dot1.gif" width="3" height="3" border="0" align="absmiddle">
-									<font color="666666"><b>수량</b></font>
-								</td>
-								<td width="1" bgcolor="E8E7EA"></td>
-								<td style="padding-left:10px">
-									<input type="text" name="num" value="1" size="3" maxlength="5" class="cmfont1"> <font color="666666">개</font>
-								</td>
-							</tr>
-							<tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
-						</table>
-						<table border="0" cellpadding="0" cellspacing="0" width="370" class="cmfont">
-							<tr>
-								<td height="70" align="center">
-									<a href="javascript:check_form2('D')"><img src="images/b_order.gif" border="0" align="absmiddle"></a>&nbsp;&nbsp;&nbsp;
-									<a href="javascript:check_form2('C')"><img src="images/b_cart.gif"  border="0" align="absmiddle"></a>
-								</td>
-							</tr>
-						</table>
-						<table border="0" cellpadding="0" cellspacing="0" width="370" class="cmfont">
-							<tr>
-								<td height="30" align="center">
-									<img src="images/product_text1.gif" border="0" align="absmiddle">
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			</form>
-			<!-- form2 끝  -->
-
-			<table border="0" cellpadding="0" cellspacing="0" width="747">
-				<tr><td height="22"></td></tr>
-			</table>
-
-			<!-- 상세설명 -->
-			<table border="0" cellpadding="0" cellspacing="0" width="747">
-				<tr><td height="13"></td></tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746">
-				<tr>
-					<td height="30" align="center">
-						<img src="images/product_title.gif" width="746" height="30" border="0">
-					</td>
-				</tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746" style="font-size:9pt">
-				<tr><td height="13"></td></tr>
-				<tr>
-					<td height="200" valign=top style="line-height:14pt">
-			
-						<br>
-						<br>
-						<center>
-						<img src="product/<?=$row[image3]?>"><br><br><br>
-						
-			
-
-						</center>
-					</td>
-				</tr>
-			</table>
-
-			<!-- 교환배송정보 -->
-			<table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
-				<tr><td height="10"></td></tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746">
-				<tr>
-					<td align="center" class="cmfont"></td>
-				</tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
-				<tr><td height="10"></td></tr>
-			</table>
+         <!-- form2 시작 -->
+   
+         <form name="form2" method="post" action="product.php">
+         <input type="hidden" name="menu" value="<?=$menu;?>">
 
 
-<!-------------------------------------------------------------------------------------------->	
+         <table border="0" cellpadding="0" cellspacing="5" width="767" class="cmfont" bgcolor="#efefef">
+            <tr>
+               <td bgcolor="white" align="center">
+                  <table border="0" cellpadding="0" cellspacing="0" width="751" class="cmfont">
+                     <tr>
+                        <td align="center" valign="middle">
+                           <table border="0" cellpadding="0" cellspacing="0" width="730" height="40" class="cmfont">
+                              <tr>
+                                 <td width="500" class="cmfont">
+                                    <font color="#C83762" class="cmfont"><b><?=$a_menu[$menu]?> &nbsp</b></font>&nbsp
+                                 </td>
+                                 <td align="right" width="274">
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="cmfont">
+                                       <tr>
+                                          <td align="right"><font color="EF3F25"><b><?=$count;?></b></font> 개의 상품.&nbsp;&nbsp;&nbsp</td>
+                                          <td width="100">
+            <select name="sort" size="1" class="cmfont" onChange="form2.submit()">
+                                                <option value="new" <?=($sort=="new")?"selected":""?>>신상품순 정렬</option>
+                                                <option value="up"<?=($sort=="up")?"selected":""?>>고가격순 정렬</option>
+                                                <option value="down"<?=($sort=="down")?"selected":""?>>저가격순 정렬</option>
+                                                <option value="name"<?=($sort=="name")?"selected":""?>>상품명 정렬</option>
+                                             </select>
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         </form>
+         <!-- form2 -->
+<?
+   $num_col=5;
+   $num_row=4;
+   $page_line=$num_col*$num_row;
+
+   $icount=0;
+   $page=$_REQUEST["page"];
+
+   if(!$page) $page=1;
+   $pages = ceil($count/$page_line);
+   $first = 1;
+
+   if ($count>0) $first = $page_line*($page-1);
+   $page_last=$count-$first;
+   if($page_last>$page_line)$page_last=$page_line;
+   if($count>0) mysqli_data_seek($result,$first);
+echo("<table border='0' cellpadding='0' cellspacing='0'>");
+for ($ir=0;  $ir<$num_row;  $ir++)
+{
+     echo("<tr>");
+     for ($ic=0;  $ic<$num_col;  $ic++)
+     {
+          if ($icount <= $page_last-1 )
+         {
+                     $row=mysqli_fetch_array($result);
+                     
+                     $price=number_format($row["price47"]);
+                     $saleprice=number_format(round($row["price47"]*(100-$row["discount47"])/100,-2)); 
+              echo("<td width='150' height='205' align='center' valign='top'>
+                  <table border='0' cellpadding='0' cellspacing='0' width='100' class='cmfont'>
+                     <tr> 
+                        <td align='center'> 
+                           <a href='product_detail.php?no=$row[no47]'><img src='product/$row[image1]' width='120' height='140' border='0'></a>
+                        </td>
+                     </tr>
+                     <tr><td height='5'></td></tr>
+                     <tr> 
+                        <td height='20' align='center'>
+                     <a href='product_detail.php?no=$row[no47]'><font color='444444'>$row[name47]</font></a><br>&nbsp; ");
+                           if($row['icon_hit47']==1) echo("<img src='images/i_hit.gif' align='absmiddle' vspace='1'>");
+                           if($row['icon_new47']==1) echo("<img src='images/i_new.gif' align='absmiddle' vspace='1'>");
+                           if($row['icon_sale47']==1) echo("<img src='images/i_sale.gif' align='absmiddle' vspace='1'><font color='red'> $row[discount47] %</font>");
+                           echo("</td></tr>");
+                  if($row['icon_sale47']==1)
+                              {
+                              echo("<tr><td height='20' align='center'><b><font color='red'><s>$price</s></font> <font color='black'>원</font></b></td></tr>");
+                              echo("<tr><td height='20' align='center'><font color='black'><b>$saleprice 원</b></font></td></tr>");
+                              }
+                           else
+                              echo("<tr><td height='20' align='center'><font color='black'><b>$price 원</b></font></td></tr>");
+                           echo("</table></td>");
+          }
+         else
+              echo("<td height='10'></td>");
+         $icount++;
+      }
+      echo("</tr>");
+}
+echo("</table>");
+
+?>
+
+
+     <?
+      $blocks = ceil($pages/$page_block);
+      $block = ceil($page/$page_block);
+      $page_s = $page_block * ($block-1);
+      $page_e = $page_block * $block;
+      if($blocks <= $block)$page_e = $pages;
+      echo("<table width='690' border='0'> <tr><td height='20' align='center'>");
+         
+      if($block>1)
+      {
+         $tmp = $page_s;
+         echo("<a href='product.php?page=$tmp&text1=$text1'>
+               <img src = 'images/i_prev.gif' align='absmiddle' border='0'></a>&nbsp");
+      }
+      for($i=$page_s+1; $i<=$page_e; $i++)
+      {
+         if($page == $i)
+            echo("<font color='red'><b>$i</b></font>&nbsp");
+         else
+            echo("<a href='product.php?page=$i&text1=$text1'>[$i]</a>&nbsp");
+      }
+      if ($block < $blocks)
+      {
+         $tmp = $page_e+1;
+         echo ("&nbsp<a href='product.php?page=$tmp&text1=$text1'>
+               <img src='images/i_next.gif' align='absmiddle' border='0'>
+               </a>");
+      }
+      echo("   </td>
+         </tr>
+      </table>");
+?>
+
+<!-------------------------------------------------------------------------------------------->   
 <!-- 끝 : 다른 웹페이지 삽입할 부분                                                         -->
-<!-------------------------------------------------------------------------------------------->	
+<!-------------------------------------------------------------------------------------------->   
 
-		<?
+<?
 include "main_bottom.php";
 ?>

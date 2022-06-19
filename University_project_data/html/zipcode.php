@@ -8,11 +8,13 @@
 	ini_set("display_errors",1);
 	
 
-	$db= mysqli_connect("localhost","zip","zips","zip");
-	if(!$db) exit("DB연결에러");
+    $db = mysqli_connect("localhost", "zip", "zips","zip");
+    if (!$db) exit("DB연결에러");
+
 	$text1=$_REQUEST["text1"];
 	$sel=$_REQUEST["sel"];
-	
+	$zip_kind=$_REQUEST["zip_kind"];
+
 
 ?>
 
@@ -90,7 +92,7 @@ function SendZip(zip_kind)
 	<tr>
 		<td><br>
 			<form  name="form" method="post" action="zipcode.php">
-			<input type="hidden" name="zip_kind" value="0">
+			<input type="hidden" name="zip_kind" value="<?=$zip_kind;?>">
 			<table width="495" border="0" cellspacing="0" cellpadding="0" align="center">
 				<tr>
 					<td width="14">&nbsp;</td>
@@ -191,7 +193,7 @@ if (!$sel) $sel=0;
 	<!-- 회원가입인 경우 : SendZip(0), 주문지인 경우 : SendZip(1), 배송지인 경우 : SendZip(2) -->
 	<tr height="55"> 
 		<td align="center">
-			<a href="javascript:SendZip(0)"><img src="images/b_ok1.gif" border="0"></a>
+			<a href="javascript:SendZip(<?=$zip_kind;?>)"><img src="images/b_ok1.gif" border="0"></a>
 		</td>
 	</tr>
 </form>

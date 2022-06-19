@@ -18,7 +18,7 @@
 		<td> 
 			<table width="959" border="0" cellspacing="0" cellpadding="0">
 				<tr> 
-					<td valign="top"><a href="index.html"><img src="images/footer_logo.gif" border="0"></a></td>
+					<td valign="top"><a href="index.html"><img src="images/footer_logo2.gif" border="0"></a></td>
 					<td width="28"></td>
 					<td> 
 						<table border="0" cellspacing="0" cellpadding="0">

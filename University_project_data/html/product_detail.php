@@ -7,7 +7,6 @@
    include "main_top.php";
    include "common.php";
    $no=$_REQUEST["no"];
-   
 
    
    $query="select * from product where no47=$no";
@@ -15,7 +14,6 @@
    if (!$result) exit("에러:$query");                
    $count=mysqli_num_rows($result); 
    $row=mysqli_fetch_array($result);
-   /*
    
    $query = "select * from opts where opt_no47=$row[opt1]";
    $result=mysqli_query($db,$query);     
@@ -28,12 +26,19 @@
    if (!$result2) exit("에러1:$query");                 
    $count2=mysqli_num_rows($result2);
    $row2=mysqli_fetch_array($result2);
-   */
    
-
+   $query = "select * from opt where no47=$row[opt1]";
+   $result3=mysqli_query($db,$query);     
+   if (!$result3) exit("에러1:$query");      
+   $row3=mysqli_fetch_array($result3);
    
-   $price=number_format($row["price47"]);
-   $saleprice=number_format(round($row["price47"]*(100-$row["discount47"])/100, -3) );
+   $query = "select * from opt where no47=$row[opt2]";
+   $result4=mysqli_query($db,$query);     
+   if (!$result4) exit("에러1:$query");      
+   $row4=mysqli_fetch_array($result4);
+   
+   $price1=number_format($row["price47"]);
+   $price=number_format(round($row["price47"]*(100-$row["discount47"])/100, -3) );
 ?>
 
 
@@ -47,7 +52,7 @@
 
          function Zoomimage(no) 
          {
-            window.open("zoomimage.php?no="+no, "", "menubar=no, scrollbars=yes, width=560, height=640, top=30, left=50");
+            window.open("zoomimage.php?no="+no, "", "menubar=no, scrollbars=yes, width=560, height=640, top=30, left=47");
          }
 
          function check_form2(str) 
@@ -83,7 +88,7 @@
          <table border="0" cellpadding="0" cellspacing="0" width="747">
             <tr><td height="13"></td></tr>
             <tr>
-               <td height="30"><img src="images/product_title3.gif" width="900" height="30" border="0"></td>
+               <td height="30"><img src="images/product_title3.gif" width="746" height="30" border="0"></td>
             </tr>
             <tr><td height="10"></td></tr>
          </table>
@@ -95,7 +100,7 @@
 
          <table border="0" cellpadding="0" cellspacing="0" width="745">
             <tr>
-               <td width="470" align="center" valign="top">
+               <td width="335" align="center" valign="top">
                   <!-- 상품이미지 -->
                   <table border="0" cellpadding="0" cellspacing="1" width="315" height="315" bgcolor="D4D0C8">
                      <tr>
@@ -105,7 +110,7 @@
                      </tr>
                   </table>
                </td>
-               <td width="700 " align="center" valign="top">
+               <td width="410 " align="center" valign="top">
                   <!-- 상품명 -->
                   <table border="0" cellpadding="0" cellspacing="0" width="370" class="cmfont">
                      <tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
@@ -153,39 +158,56 @@
                         </td>
                         <td width="1" bgcolor="E8E7EA"></td>
                         <td style="padding-left:10px">
-                       	<select name="opts1" class="cmfont1">
-										<option value="">선택하세요</option>
-									<?
-										$query = "select * from opts where opt_no47=$row[opt1]";
-										$result=mysqli_query($db,$query); 
-										if (!$result) exit("에러:$query");
+                      <select name="opts1" class="cmfont1">
+										<?
+											$query="select*from opt where no47= $row[opt1] ";
+											$result=mysqli_query($db,$query); 
+											if (!$result) exit("에러:$query");
+											$row3=mysqli_fetch_array($result);
 
-										$count=mysqli_num_rows($result);
-
-										for($i=0; $i<$count; $i++)
-										{
-											$row1=mysqli_fetch_array($result);
-											echo("<option value='$row1[no47]'>$row1[name47]</option>");
-										}				
+											$query="select*from opts where opt_no47= $row[opt1] order by name47";
+											$result=mysqli_query($db,$query);
+											if (!$result) exit("에러:$query");
+											$count=mysqli_num_rows($result);
+										
+											if ($count>0) mysqli_data_seek($result,$first);
+											echo("<option value='' selected>$row3[name47] 선택</option>");
+											for ($i=0;$i<$count;$i++)
+											{
+												$row1=mysqli_fetch_array($result);
+												
+												if ($row["opt1"]==$row1["no47"])
+												echo("<option value='$row1[no47]' selected>$row1[name47]</option>");
+												else
+												echo("<option value='$row1[no47]'>$row1[name47]</option>");
+											 }
 										?>
 									</select> &nbsp;
 									<select name="opts2" class="cmfont1">
-										<option value="">선택하세요</option>
 										<?
-										$query = "select * from opts where opt_no47=$row[opt2]";
-										$result=mysqli_query($db,$query); 
-										if (!$result) exit("에러:$query");
+											$query="select*from opt where no47= $row[opt2] ";
+											$result=mysqli_query($db,$query); 
+											if (!$result) exit("에러:$query");
+											$row4=mysqli_fetch_array($result);
 
-										$count=mysqli_num_rows($result);
-
-										for($i=0; $i<$count; $i++)
-										{
-											$row2=mysqli_fetch_array($result);
-											echo("<option value='$row2[no47]'>$row2[name47]</option>");
-										}				
-											?>
-
-                           </select>
+											$query="select*from opts where opt_no47= $row[opt2] order by name47";
+											$result=mysqli_query($db,$query);
+											if (!$result) exit("에러:$query");
+											$count=mysqli_num_rows($result);
+										
+											if ($count>0) mysqli_data_seek($result,$first);
+											echo("<option value='' selected>$row4[name47] 선택</option>");
+											for ($i=0;$i<$count;$i++)
+											{
+												$row2=mysqli_fetch_array($result);
+												
+												if ($row["opt2"]==$row2["no47"])
+												echo("<option value='$row2[no47]' selected>$row2[name47]</option>");
+												else
+												echo("<option value='$row2[no47]'>$row2[name47]</option>");
+											 }
+										?>
+									</select>
                         </td>
                      </tr>
                      <tr><td colspan="3" bgcolor="E8E7EA"></td></tr>
@@ -234,16 +256,17 @@
          <table border="0" cellpadding="0" cellspacing="0" width="746">
             <tr>
                <td height="30" align="center">
-                  <img src="images/product_title.gif" width="900" height="30" border="0">
+                  <img src="images/product_title.gif" width="746" height="30" border="0">
                </td>
             </tr>
          </table>
 
-         <table border="0" cellpadding="0" cellspacing="0" width="947" style="font-size:9pt">
+         <table border="0" cellpadding="0" cellspacing="0" width="746" style="font-size:9pt">
             <tr><td height="13"></td></tr>
             <tr>
-               <td height="200" valign=top style="line-height:14pt" align = left>
-
+               <td height="200" valign=top style="line-height:14pt" align = left><p style="text-align:center;">
+                   <?=$row["contents47"]?>
+                   </p>
                   <br>
                   <br>
                   <center>
@@ -253,18 +276,19 @@
             </tr>
          </table>
 
- 		<!-- 교환배송정보 -->
-			<table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
-				<tr><td height="10"></td></tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746">
-				<tr>
-					<td align="center" class="cmfont"></td>
-				</tr>
-			</table>
-			<table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
-				<tr><td height="10"></td></tr>
-			</table>
+         <!-- 교환배송정보 -->
+         <table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
+            <tr><td height="10"></td></tr>
+         </table>
+         <table border="0" cellpadding="0" cellspacing="0" width="746">
+            <tr>
+               <td align="center" class="cmfont"></td>
+            </tr>
+         </table>
+         <table border="0" cellpadding="0" cellspacing="0" width="746" class="cmfont">
+            <tr><td height="10"></td></tr>
+         </table>
+
 
 <!-------------------------------------------------------------------------------------------->   
 <!-- 끝 : 다른 웹페이지 삽입할 부분                                                         -->
