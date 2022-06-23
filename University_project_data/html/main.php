@@ -11,7 +11,7 @@
   if(!$result) exit("에러:$query");            //에러 조사
   $count=mysqli_num_rows($result);   //레코드개수
   
-  $num_col=5;   $num_row=3;                   // column수, row수
+  $num_col=4;   $num_row=3;                   // column수, row수
 $count=mysqli_num_rows($result);         // 출력할 제품 개수
 $icount=0; 
 
@@ -64,13 +64,59 @@ h1 {
 }
 
 
+
+	.zoom_image img {
+		transform:scale(1);
+		transition:all 0.5s;
+	}
+	.zoom_image:hover img {
+		transform:scale(1.2);
+	}
+	
+
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0; /*쓸 데 없는 공백 제거*/
+    padding: 0; /*쓸 데 없는 공백 제거*/
+    background-color: #513205;
+    list-style-type: none; /*목록 기호 제거*/
+}
+
+.nav-item {
+    padding: 15px;
+    cursor: pointer; /*마우스 커서를 pointer 모양으로 함*/
+}
+.nav-item a { /*nav-item 클래스 아래의 a 요소를 선택함*/
+    text-align: center;
+    text-decoration: none; /*밑줄 없앰*/
+    color: white;
+}
+
+
+.nav-item:nth-child(1) {
+    background-color: #513205;
+}
+
+.nav-item:hover {
+    background-color: grey;
+}
+
+
+
+a:link { color: red; text-decoration: none;} 
+a:visited { color: black; text-decoration: none;} 
+a:hover { color: blue; text-decoration: underline;}
+
 </style>
 <!-------------------------------------------------------------------------------------------->   
 <!-- 시작 : 다른 웹페이지 삽입할 부분                                                       -->
 <!-------------------------------------------------------------------------------------------->   
 
 
-         <!---- 화면 우측(신상품) 시작 -------------------------------------------------->   
+         <!---- 화면 우측(신상품) 시작 -------------------------  
          <table width="767" border="0" cellspacing="0" cellpadding="0">
             <tr>
                <td height="60">
@@ -78,7 +124,7 @@ h1 {
                </td>
             </tr>
          </table>
-
+-------------------------> 
          
             <!---1번째 줄-->
 <?
@@ -106,12 +152,14 @@ for ($ir=0; $ir<$num_row; $ir++)
           
           
              echo("
-               <td width='150' height='205' align='center' valign='top'>
-                  <table border='0' cellpadding='0' cellspacing='0' width='100' class='cmfont'>
+               <td width='510' height='205' align='center' valign='top'>
+                  <table border='0' cellpadding='0' cellspacing='0' width='350' height='300' class='cmfont'>
                      <tr> 
                         <td align='center'> 
-                           <a href='product_detail.php?no=$row[no47]'><img src='product/$row[image1]'</a>
-                        </td>
+							<div class='zoom_image' id='thick'>
+                           <a href='product_detail.php?no=$row[no47]'><img src='product/$row[image2]' border='0'></a>
+							</div>
+						</td>
                      </tr>
                      <tr><td height='5'></td></tr>
                      <tr> 

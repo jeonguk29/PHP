@@ -74,7 +74,7 @@ include "main_top.php";
          </form>
          <!-- form2 -->
 <?
-   $num_col=5;
+   $num_col=4;
    $num_row=4;
    $page_line=$num_col*$num_row;
 
@@ -101,16 +101,19 @@ for ($ir=0;  $ir<$num_row;  $ir++)
                      
                      $price=number_format($row["price47"]);
                      $saleprice=number_format(round($row["price47"]*(100-$row["discount47"])/100,-2)); 
-              echo("<td width='150' height='205' align='center' valign='top'>
+              echo("<td width='510' height='205' align='center' valign='top'>
                   <table border='0' cellpadding='0' cellspacing='0' width='100' class='cmfont'>
                      <tr> 
                         <td align='center'> 
-                           <a href='product_detail.php?no=$row[no47]'><img src='product/$row[image1]' width='120' height='140' border='0'></a>
-                        </td>
+						<div class='zoom_image' id='thick'>
+                           <a href='product_detail.php?no=$row[no47]'><img src='product/$row[image2]' width='350' height='300' border='0'></a>
+                        </div>
+						</td>
                      </tr>
                      <tr><td height='5'></td></tr>
                      <tr> 
                         <td height='20' align='center'>
+			
                      <a href='product_detail.php?no=$row[no47]'><font color='444444'>$row[name47]</font></a><br>&nbsp; ");
                            if($row['icon_hit47']==1) echo("<img src='images/i_hit.gif' align='absmiddle' vspace='1'>");
                            if($row['icon_new47']==1) echo("<img src='images/i_new.gif' align='absmiddle' vspace='1'>");

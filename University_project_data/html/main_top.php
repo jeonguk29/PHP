@@ -218,6 +218,60 @@ ul.imgs li img{
     box-shadow: 14px -5px 35px -21px rgba(0,0,0,0.66);
 }
 
+
+
+
+
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0; /*쓸 데 없는 공백 제거*/
+    padding: 0; /*쓸 데 없는 공백 제거*/
+    background-color: #513205;
+    list-style-type: none; /*목록 기호 제거*/
+}
+
+.nav-item {
+    padding: 15px;
+    cursor: pointer; /*마우스 커서를 pointer 모양으로 함*/
+}
+.nav-item a { /*nav-item 클래스 아래의 a 요소를 선택함*/
+    text-align: center;
+    text-decoration: none; /*밑줄 없앰*/
+    color: white;
+}
+
+
+.nav-item:nth-child(1) {
+    background-color: #513205;
+}
+
+.nav-item:hover {
+    background-color: grey;
+}
+
+
+
+a:link { color: red; text-decoration: none;} 
+a:visited { color: black; text-decoration: none;} 
+a:hover { color: blue; text-decoration: underline;}
+
+
+#thick {
+  border: 6px solid;
+  border-color: #513205;
+}
+
+	.zoom_image img {
+		transform:scale(1);
+		transition:all 0.5s;
+	}
+	.zoom_image:hover img {
+		transform:scale(1.2);
+	}
+
 </style>
 
 <script>
@@ -316,22 +370,25 @@ ul.imgs li img{
 		<td align="left" bgcolor="#F7F7F7">
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td><a href="product.php?no=1"><img src="images/main_menu01_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=2"><img src="images/main_menu02_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=3"><img src="images/main_menu03_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=4"><img src="images/main_menu04_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=5"><img src="images/main_menu05_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=6"><img src="images/main_menu06_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=7"><img src="images/main_menu07_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=8"><img src="images/main_menu08_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=9"><img src="images/main_menu09_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
-					<td><a href="product.php?no=10"><img src="images/main_menu10_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=1">"><img src="images/main_menu01_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=2">"><img src="images/main_menu02_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=3">><img src="images/main_menu03_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=4">><img src="images/main_menu04_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=5">><img src="images/main_menu05_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=6">><img src="images/main_menu06_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=7">><img src="images/main_menu07_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=8">><img src="images/main_menu08_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=9">><img src="images/main_menu09_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=10">><img src="images/main_menu10_off.gif" width="96" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
 ------------------------------------------------------------------------>
+
+
+
 
 <!-- 상품 검색 ------------------------------------->
 <table width="959" height="25" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -360,137 +417,49 @@ ul.imgs li img{
 	<tr><td height="1" colspan="5" bgcolor="#E5E5E5"></td></tr>
 </table>
 
-<table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
-	<tr><td height="10" colspan="2"></td></tr>
+<!--
+<table width="1000" height="25" border="0" cellspacing="0" cellpadding="0" align="center">
 	<tr>
-		<td height="100%" valign="top">
-			<!--  화면 좌측메뉴 시작 (main_left) ------------------------------->
-			<table width="181" border="0" cellspacing="0" cellpadding="0">
-				<tr> 
-					<td valign="top"> 
-						<!--  Category 메뉴 : 세로인 경우 -------------------------------->
-						<table width="177"  border="0" cellpadding="2" cellspacing="1" bgcolor="#afafaf">
-							<tr><td height="3"  bgcolor="#bfbfbf"></td></tr>
-							<tr><td height="30" bgcolor="#f0f0f0" align="center" style="font-size:12pt;color:#333333"><b>Category</b></td></tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=1"><img src="images/main_menu01_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=2"><img src="images/main_menu02_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=3"><img src="images/main_menu03_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=4"><img src="images/main_menu04_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=5"><img src="images/main_menu05_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=6"><img src="images/main_menu06_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=7"><img src="images/main_menu07_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=8"><img src="images/main_menu08_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=9"><img src="images/main_menu09_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="product.php?menu=10"><img src="images/main_menu10_off.gif" width="176" height="30" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr><td height="10"></td></tr>
-				<tr> 
-					<td> 
-						<!--  Custom Service 메뉴(QA, FAQ...) -->
-						<table width="177"  border="0" cellpadding="2" cellspacing="1" bgcolor="#afafaf">
-							<tr><td height="3"  bgcolor="#a0a0a0"></td></tr>
-							<tr><td height="25" bgcolor="#f0f0f0" align="center" style="font-size:11pt;color:#333333"><b>Customer Service</b></td></tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="qa.html"><img src="images/main_left_qa.gif" border="0" width="176"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href="faq.html"><img src="images/main_left_faq.gif" border="0" width="176"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href=""><img src="images/main_left_etc.gif" border="0" width="176"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href=""><img src="images/main_left_etc.gif" border="0" width="176"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFFF">
-									<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-										<tr><td><a href=""><img src="images/main_left_etc.gif" border="0" width="176"></a></td></tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</td>
+		<td align="left" bgcolor="#F7F7F7">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><a href="product.php?menu=1"><img src="images/main_menu01_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=2"><img src="images/main_menu02_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=3"><img src="images/main_menu03_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=4"><img src="images/main_menu04_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=5"><img src="images/main_menu05_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=6"><img src="images/main_menu06_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=7"><img src="images/main_menu07_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=8"><img src="images/main_menu08_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=9"><img src="images/main_menu09_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
+					<td><a href="product.php?menu=10"><img src="images/main_menu10_off.gif" width="120" height="50" border="0"  onmouseover="img_change('on')" onmouseout="img_change('off')"></a></td>
 				</tr>
 			</table>
+		</td>
+	</tr>
+</table>
+-->
+
+
+    <nav>
+            <ul class="nav-container">
+				<li class="nav-item"> <a href="main.php">메인</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=1">남성가방</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=2">남성슈즈</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=3">여성가방</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=4">여성슈즈</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=5">지갑</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=6">시계</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=7">실버 주얼리</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=8">선글라스</a> </li>
+                <li class="nav-item"> <a href="product.php?menu=9">벨트</a> </li>
+				<li class="nav-item"> <a href="product.php?menu=10">기타상품</a> </li>
+            </ul>
+        </nav>
+		
+		
+<br><br>
+
 			<!--  화면 좌측메뉴 끝 (main_left) --------------------------------->
 		</td>
 		<td width="10"></td>
